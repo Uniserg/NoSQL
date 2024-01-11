@@ -1,0 +1,13 @@
+var uniqueFields = db.movies.aggregate([
+    { $project: { _id: 0, fields: { $objectToArray: "$$ROOT" } } },
+    { $unwind: "$fields" },
+    { $group: { _id: null, allFields: { $addToSet: "$fields.k" } } },
+    { $project: { _id: 0, allFields: 1 } }
+]).next().allFields;
+
+var moviesWithRatingAbove4 = db.movies.find({
+    "tomatoes.viewer.rating": { $gt: 4 },
+    "$and": uniqueFields.map(field => ({ [field]: { $exists: true } }))
+});
+
+moviesWithRatingAbove4.toArray();

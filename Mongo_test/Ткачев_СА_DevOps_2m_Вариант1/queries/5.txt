@@ -1,0 +1,5 @@
+db.movies.find({
+    released: ISODate("1893-05-09T00:00:00.000Z")
+},
+    {title: 1, languages: 1, released: 1, directors: 1, writers: 1, countries: 1}
+).toArray();

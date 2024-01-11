@@ -1,0 +1,4 @@
+db.movies.find(
+        { runtime: { $gte: 60, $lte: 90 } },
+        { title: 1, languages: 1, released: 1, runtime: 1, directors: 1, writers: 1, countries: 1 }
+).toArray();

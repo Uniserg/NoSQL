@@ -1,0 +1,46 @@
+[
+  {
+    "_id": "573a139af29313caabcf184a",
+    "plot": "David Attenborough's study of the world of plants, which demonstrates, with the aid of time-lapse photography, the rich and varied ways in which they flourish.",
+    "genres": [
+      "Documentary"
+    ],
+    "runtime": 292,
+    "cast": [
+      "David Attenborough"
+    ],
+    "num_mflix_comments": 1,
+    "poster": "https://m.media-amazon.com/images/M/MV5BMTU3MDQ2NDI1MV5BMl5BanBnXkFtZTcwMzMwMjIyMQ@@._V1_SY1000_SX677_AL_.jpg",
+    "title": "The Private Life of Plants",
+    "fullplot": "David Attenborough's study of the world of plants, which demonstrates, with the aid of time-lapse photography, the rich and varied ways in which they flourish.",
+    "languages": [
+      "English"
+    ],
+    "released": "1995-01-05T00:00:00.000Z",
+    "awards": {
+      "wins": 3,
+      "nominations": 3,
+      "text": "Won 1 Primetime Emmy. Another 2 wins & 3 nominations."
+    },
+    "lastupdated": "2015-09-06 00:40:33.587000000",
+    "year": "1995è",
+    "imdb": {
+      "rating": 9,
+      "votes": 1693,
+      "id": 123360
+    },
+    "countries": [
+      "UK"
+    ],
+    "type": "series",
+    "tomatoes": {
+      "viewer": {
+        "rating": 3.8,
+        "numReviews": 144,
+        "meter": 74
+      },
+      "dvd": "2006-07-25T00:00:00.000Z",
+      "lastUpdated": "2015-07-31T19:04:50.000Z"
+    }
+  }
+]

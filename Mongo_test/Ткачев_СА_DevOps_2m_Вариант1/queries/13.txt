@@ -1,0 +1,8 @@
+db.movies.aggregate([
+    {
+        $match: { type: 'movie' }
+    },
+    {
+        $group: { _id: '$countries', avgRuntime: { $avg: '$runtime' } }
+    }
+]).toArray();

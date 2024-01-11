@@ -1,0 +1,4 @@
+db.movies.find(
+    { 'tomatoes.viewer.rating': { $gte: 3, $lt: 4 } },
+    { title: 1, languages: 1, released: 1, directors: 1, 'tomatoes.viewer': 1, writers: 1, countries: 1 }
+).toArray();

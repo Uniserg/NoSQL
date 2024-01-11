@@ -1,0 +1,13 @@
+db.movies.aggregate([
+        {
+            $group: {
+                _id: "$year",
+                avgRating: { $avg: "$imdb.rating" },
+                movies: { $push: "$$ROOT" }
+            }
+        },
+        { $sort: { avgRating: -1 } },
+        { $limit: 1 },
+        { $unwind: "$movies" },
+        { $replaceRoot: { newRoot: "$movies" } }
+]).toArray();

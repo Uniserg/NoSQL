@@ -1,0 +1,5 @@
+db.movies.aggregate([
+        {
+            $group: { _id: "$rated", avgRating: { $avg: "$imdb.rating" } }
+        }
+]).toArray();

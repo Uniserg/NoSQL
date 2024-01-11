@@ -1,0 +1,12 @@
+db.movies.aggregate([
+        {
+            $project: {
+                _id: 1,
+                title: 1,
+                imdbRating: "$imdb.rating",
+                tomatoRating: "$tomatoes.viewer.rating"
+            }
+        },
+        { $sort: {imdbRating: -1, tomatoRating: -1} },
+        { $limit: 1 }
+]).toArray()
