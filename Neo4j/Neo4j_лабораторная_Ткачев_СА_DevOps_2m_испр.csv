@@ -1,0 +1,37 @@
+1;MATCH (n) RETURN n
+2;CALL db.schema.visualization()
+3;MATCH (p:Person) RETURN p
+4;MATCH (m:Movie) RETURN m
+5;MATCH (m:Movie {released: 2003}) RETURN m
+6;CALL db.propertyKeys
+7;MATCH (m:Movie {released: 2006}) RETURN m.title
+8;MATCH (m:Movie) RETURN m.title, m.released, m.tagline
+9;MATCH (m:Movie) RETURN m.title AS Title, m.released AS Released, m.tagline AS Tagline
+10;CALL db.schema.visualization()
+11;MATCH (p:Person)-[:WROTE]->(:Movie {title: "Speed Racer"}) RETURN p 
+12;MATCH (:Person {name: "Tom Hanks"})--(m:Movie) RETURN m
+13;MATCH (:Person {name: "Tom Hanks"})-[r:ACTED_IN]->(m:Movie) RETURN m.title, r.roles 
+14;MATCH (:Person {name: "Tom Cruise"})-[r:ACTED_IN]->(m:Movie) RETURN m.title, r.roles
+15;MATCH (p:Person) WHERE p.born >= 1970 AND p.born < 1980 RETURN p
+16;MATCH (a:Person)-[:ACTED_IN]->(:Movie {title: "The Matrix"}) WHERE a.born > 1960 RETURN a.name
+17;MATCH (p:Person) WHERE properties(p) = {}  RETURN p
+18;MATCH (p:Person)-[]->(m:Movie) WHERE properties(p) <> {}  RETURN p
+19;MATCH (a:Person)-[:ACTED_IN]-() WHERE a.name STARTS WITH "James" RETURN a.name
+20;MATCH (:Person)-[r:REVIEWED]->(:Movie) RETURN r
+21;MATCH (p:Person)-[:PRODUCED]->(m:Movie) WHERE NOT (p)-[:DIRECTED]->(m) RETURN p, m
+22;MATCH (a:Person)-[:ACTED_IN]->(m1:Movie)<-[:DIRECTED]-(a:Person) RETURN m1, a
+23;MATCH (m:Movie) WHERE m.released >= 2000 AND m.released <= 2010 RETURN m
+24;MATCH (:Person)-[r:ACTED_IN]->(m:Movie) WHERE m.title IN r.roles RETURN m.title, r.roles 
+25;MATCH (a:Person)-[:ACTED_IN]->(m:Movie) RETURN m.title
+26;MATCH (a:Person)-[:ACTED_IN]->(m:Movie) RETURN DISTINCT m.title
+27; ???
+28;MATCH (m:Movie) RETURN m.title, m.released ORDER BY m.released DESC
+29;MATCH (:Person)-[r:REVIEWED]->(m:Movie) RETURN m.title, r.rating ORDER BY r.rating DESC LIMIT 5
+30;MATCH (actor:Person)-[:ACTED_IN]->(m:Movie) WITH actor, COUNT(m) AS movieCount WHERE movieCount <= 3 RETURN actor.name, movieCount
+31;MATCH (actor:Person)-[:ACTED_IN]->(movie:Movie)<-[:PRODUCED]-(producer:Person) RETURN movie.title AS Movie, COLLECT(DISTINCT actor.name) AS Actors, COLLECT(DISTINCT producer.name) AS Producers ORDER BY size(Actors) DESC
+32;MATCH (a:Person)-[:ACTED_IN]->(m:Movie) WITH a, COLLECT(DISTINCT m.title) AS movies WHERE SIZE(movies) > 5 RETURN a.name, movies
+33;MATCH (a:Person)-[:ACTED_IN]->(m:Movie) WITH a, COLLECT(DISTINCT m.title) AS movies WHERE SIZE(movies) > 5 RETURN movies, a.name
+34;MATCH (p:Person {name: "Tom Hanks"})-[:ACTED_IN]->(m:Movie) RETURN m.title, m.released, 2023 - m.released AS yearsAgo, 2023 - p.born AS ageWhenReleased
+35;MATCH (p:Person)-[:WROTE]->(m:Movie) RETURN p.name, m.title
+35.2;MATCH (p:Person)-[:WROTE]->(m:Movie) WITH p, COLLECT(DISTINCT m.title) as movies RETURN p.name, movies
+36;MATCH (p:Person) WHERE p.born IS NULL RETURN p.name
